@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 
@@ -19,10 +20,11 @@ public class ClientApplication {
 @RestController
 class MessageRestController {
 
-    @Value("${sample:sample SC default}")
+    @Value("${sample.property:Default sample controller}")
     private String message;
 
-    @RequestMapping("/sample")
+    @RequestMapping("/showSampleProperty")
+    @ResponseBody
     String getMessage() {
         return this.message;
     }
